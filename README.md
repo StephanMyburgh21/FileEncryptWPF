@@ -2,7 +2,7 @@ How to use:
 
 CLI 
 
-<executable path> <input file path> <e or d>
+&lt;executable path&gt; &lt;input file path&lt; &lt;e || d&lt;
 
 File must have extension .encr to use d (decrypt)
 File cannot have extension .encr to use e (encrypt)
