@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Diagnostics;
 using System.Windows;
+using System.Security.Principal;
 
 namespace FileEncryptWPF
 {
@@ -10,6 +11,17 @@ namespace FileEncryptWPF
         {
             base.OnStartup(e);
             var args = e.Args;
+
+            var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+
+            if (isAdmin)
+            {
+                ContextMenu.AddEncryptToContextMenu();
+                ContextMenu.AddDecryptToContextMenu();
+            }
+                
 
             if (args is not [_, "e" or "d"])
             {
